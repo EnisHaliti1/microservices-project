@@ -43,16 +43,20 @@ Endpoints:
 
 
 Docker Compose stucture
-1. microservices with the gateway:
+
+microservices with the gateway:
+   
 ![afbeelding](https://github.com/user-attachments/assets/8592b98d-3748-49cc-afbb-18c9cb564a9d)
 ![afbeelding](https://github.com/user-attachments/assets/4c08899d-70ae-4bbb-bf85-ec4100c4e6a7)
 ![afbeelding](https://github.com/user-attachments/assets/31c8686e-8899-4047-a8d3-4479f8ca4de9)
 ![afbeelding](https://github.com/user-attachments/assets/0bd48049-64f5-4621-96a3-bb297874ccf7)
 
-2. databases with their volumes:
+databases with their volumes:
 ![afbeelding](https://github.com/user-attachments/assets/daeb6c7b-9473-46b3-9763-8fabdf22bf9e)
 ![afbeelding](https://github.com/user-attachments/assets/816bd646-0ffc-4d25-b691-551b2a5f5749)
 ![afbeelding](https://github.com/user-attachments/assets/84846546-953c-4a39-bb35-71adbd003341)
+
+
 
 
 Postman Screenshots:
