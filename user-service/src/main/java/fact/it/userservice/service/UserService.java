@@ -40,7 +40,14 @@ public class UserService {
         return users.stream().map(this::mapToResponse).toList();
     }
 
+
     private UserResponse mapToResponse(User user) {
         return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getMembershipType());
+    }
+
+    public void deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        }
     }
 }
