@@ -1,0 +1,70 @@
+services:
+  mysql-user:
+    image: mysql:latest
+    ports:
+      - 3303:3306
+    volumes:
+      - mysql_user_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  mysql-book:
+    image: mysql:latest
+    ports:
+      - 3304:3306
+    volumes:
+      - mysql_book_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  mongo-reviews:
+    image: mongo:latest
+    ports:
+      - 27019:27017
+    volumes:
+      - mongodb_reviews_data:/data/db
+
+  user-service:
+    depends_on:
+      - mysql-user
+    image: enishaliti12/user-service
+    ports:
+      - 8083:8083
+    links:
+      - mysql-user
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-user
+      MYSQL_DB_PORT: 3306
+
+  book-service:
+    depends_on:
+      - mysql-book
+    image: enishaliti12/book-service
+    ports:
+      - 8084:8084
+    links:
+      - mysql-book
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-book
+      MYSQL_DB_PORT: 3306
+
+  reviews-service:
+    depends_on:
+      - mongo-reviews
+    image: enishaliti12/reviews-service
+    ports:
+      - 8085:8085
+    links:
+      - mongo-reviews
+    environment:
+      MONGODB_HOST: mongo-reviews
+      MONGODB_PORT: 27017
+
+volumes:
+  mysql_user_data:
+  mysql_book_data:
+  mongodb_reviews_data:

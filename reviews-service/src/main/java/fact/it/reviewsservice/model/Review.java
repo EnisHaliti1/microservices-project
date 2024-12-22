@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Review {
     @Id
-    private String reviewId;    // MongoDB typically uses String IDs
+    private String reviewId;
     private Long bookId;
     private Long userId;
     private Integer rating;
