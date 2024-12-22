@@ -69,10 +69,9 @@ services:
       - user-service
       - book-service
       - reviews-service
-    build:
-      context: ./api-gateway
+    image: enishaliti12/api-gateway
     ports:
-      - 8080:8080
+      - 8086:8086
     environment:
       SPRING_PROFILES_ACTIVE: docker
 
