@@ -30,13 +30,11 @@ services:
     image: enishaliti12/user-service
     ports:
       - 8083:8083
-    links:
-      - mysql-user
     environment:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-user
-      MYSQL_DB_PORT: 3306
+      MYSQL_DB_PORT: 3303
 
   book-service:
     depends_on:
@@ -44,13 +42,11 @@ services:
     image: enishaliti12/book-service
     ports:
       - 8084:8084
-    links:
-      - mysql-book
     environment:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-book
-      MYSQL_DB_PORT: 3306
+      MYSQL_DB_PORT: 3304
 
   reviews-service:
     depends_on:
@@ -58,11 +54,10 @@ services:
     image: enishaliti12/reviews-service
     ports:
       - 8085:8085
-    links:
-      - mongo-reviews
+
     environment:
       MONGODB_HOST: mongo-reviews
-      MONGODB_PORT: 27017
+      MONGODB_PORT: 27019
 
   api-gateway:
     depends_on:

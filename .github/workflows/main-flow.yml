@@ -1,14 +1,11 @@
 name: Build and deliver containers
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
-  user-service:
+  userservice:
     runs-on: ubuntu-latest
-    name: Build, test, and deploy user-service container
+    name: Java 17 build, test, deliver user-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -22,7 +19,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./user-service
-        run: mvn package -B
+        run: mvn package -DskipTests
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -33,9 +30,9 @@ jobs:
       - name: Upload container to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER }}/user-service:latest
 
-  book-service:
+  bookservice:
     runs-on: ubuntu-latest
-    name: Build, test, and deploy book-service container
+    name: Java 17 build, test, deliver book-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -49,7 +46,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./book-service
-        run: mvn package -B
+        run: mvn package -DskipTests
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -60,9 +57,9 @@ jobs:
       - name: Upload container to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER }}/book-service:latest
 
-  reviews-service:
+  reviewsservice:
     runs-on: ubuntu-latest
-    name: Build, test, and deploy reviews-service container
+    name: Java 17 build, test, deliver reviews-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -76,7 +73,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./reviews-service
-        run: mvn package -B
+        run: mvn package -DskipTests
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -87,9 +84,9 @@ jobs:
       - name: Upload container to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER }}/reviews-service:latest
 
-  api-gateway:
+  apigateway:
     runs-on: ubuntu-latest
-    name: Build, test, and deploy api-gateway container
+    name: Java 17 build, test, deliver api-gateway container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -103,7 +100,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./api-gateway
-        run: mvn package -B
+        run: mvn package -DskipTests
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
