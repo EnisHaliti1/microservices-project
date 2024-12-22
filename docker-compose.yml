@@ -64,6 +64,18 @@ services:
       MONGODB_HOST: mongo-reviews
       MONGODB_PORT: 27017
 
+  api-gateway:
+    depends_on:
+      - user-service
+      - book-service
+      - reviews-service
+    build:
+      context: ./api-gateway
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
 volumes:
   mysql_user_data:
   mysql_book_data:
